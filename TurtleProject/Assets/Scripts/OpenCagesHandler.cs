@@ -61,7 +61,6 @@ public class OpenCagesHandler : MonoBehaviour
         this.finalFunctionCalled = 0;
         this.timeRemaining = 180f;
         this.seconds = Mathf.Round(timeRemaining);
-        Debug.Log("SECONDI: " + this.seconds);
 
         this.hasKey = false;
         this.openCages = 0;
@@ -83,6 +82,7 @@ public class OpenCagesHandler : MonoBehaviour
     {
         if (GameDirector.Instance.getGameState() != GameDirector.GameState.FreeRoaming)
             return;
+
         if (!canvas.transform.Find("DialoguePanel").gameObject.activeSelf)
         {
             MazePrompt.gameObject.SetActive(true);
@@ -98,10 +98,6 @@ public class OpenCagesHandler : MonoBehaviour
             dialogueText.SetText("Hey Shellie! Ci sono dei granchi che hanno bisogno di essere liberati! \n" +
                 "Ti va di aiutarmi?" + " Nel labirinto troverai delle chiavi con cui poter aprire le gabbie \n" +
                 "Attenta! Puoi prendere solo una chiave alla volta ed hai 3 minuti di tempo per liberarli tutti \n");
-            /*confirmButton.onClick.RemoveAllListeners();
-            cancelButton.onClick.RemoveAllListeners();
-            confirmButton.onClick.AddListener(ConfirmMazeButton_onClick);
-            cancelButton.onClick.AddListener(CancelMazeButton_onClick);*/
         }
     }
 
@@ -122,7 +118,9 @@ public class OpenCagesHandler : MonoBehaviour
     {
         canvas.transform.Find("DialoguePanel").gameObject.SetActive(false);
         canvas.transform.Find("BarsPanel").gameObject.SetActive(true);
+
         GameDirector.Instance.setGameState(GameDirector.GameState.MazeExploring);
+
         MazePrompt.gameObject.SetActive(false);
         audioManager.PlaySFX(audioManager.selection);
         audioManager.ChangeMusic(audioManager.SaraGameSountrack, true, 0.3f);
@@ -137,12 +135,8 @@ public class OpenCagesHandler : MonoBehaviour
 
     private void FixedUpdate()
     {
-        //if (GameObject.Find("Director").GetComponent<GameDirector>().getGameState() != GameDirector.GameState.MazeExploring)
-        //    return;
-
         if (GameDirector.Instance.getGameState() != GameDirector.GameState.MazeExploring)
             return;
-
 
         if (this.timeRemaining > 0)
         {
@@ -184,19 +178,11 @@ public class OpenCagesHandler : MonoBehaviour
 
         if (arr_cages.Length != 0)
         {
-            Debug.Log("arr_cages non NULL");
-
             for (int i = 0; i < totCages; i++)
             {
                 if (arr_cages[i] != null)
                 {
                     arr_cages[i].GetComponent<CageScript>().GoUp();
-                    //if (arr_cages[i].transform.position.y > 100f)
-                    //{
-                        //arr_cages[i].GetComponent<Rigidbody>().isKinematic = true;      //ho gi� disabilitato la fisica per l'oggetto
-                        //Destroy(arr_cages[i]);
-                        //Debug.Log("gabbia distrutta");
-                    //}
                 }
 
             }

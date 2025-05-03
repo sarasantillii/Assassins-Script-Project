@@ -123,14 +123,14 @@ public class TurtleController : MonoBehaviour
         {
             other.GetComponentInParent<TargetHandler>().TargetCollision(other.name);
         }
-        if (other.CompareTag("MazeExploring"))
+        /*if (other.CompareTag("MazeExploring"))
         {
             //TODO: richiama metodo per far partire gioco libera granchi 
             Debug.Log("Entrata MazeExploring");
             //posizioni_cageKey.SetActive(true);
             //posizioni_cageKey.GetComponent<OpenCagesHandler>().restartMazeGame();
             //GameObject.Find("Posizioni_CageKey").GetComponent<OpenCagesHandler>().restartMazeGame();  //metodo che inizializza tutto e fa partire il gioco
-        }
+        }*/
     }
     public void OnTriggerStay(Collider other)
     {

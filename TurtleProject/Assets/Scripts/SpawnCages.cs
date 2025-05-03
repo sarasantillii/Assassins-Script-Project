@@ -66,7 +66,6 @@ public class SpawnCages : MonoBehaviour
             if(i % 2 == 0)
             {
                 GameObject newCage = Instantiate(cagePrefab, mazeSpawnPoints[num], Quaternion.identity, cagesParent);
-                //newCage.GetComponent<Rigidbody>().isKinematic = true;
             }
             else
             {
